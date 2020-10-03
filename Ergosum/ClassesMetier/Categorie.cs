@@ -1,4 +1,4 @@
-﻿using Ergosum.ClassesTechniques;
+using Ergosum.ClassesTechniques;
 using System;
 using System.Collections.Generic;
 //using System.Collections.ObjectModel;
@@ -43,9 +43,16 @@ namespace Ergosum.ClassesMetier
         /// <returns></returns>
         public Collection<Jouet> JouetTranche(int age)
         {
-            // TODO : implémenter cette méthode
-            // TODO : changer le return
-            return null;
+            Collection<Jouet> uneColl = new Collection<Jouet>();
+
+            foreach(Jouet jouet in this.lesJouets)
+            {
+                if (jouet.Convient(age))
+                {
+                    uneColl.Ajouter(jouet);
+                }
+            }
+            return uneColl;
         }
     }
 }

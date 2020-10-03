@@ -1,4 +1,4 @@
-﻿using Ergosum.ClassesTechniques;
+using Ergosum.ClassesTechniques;
 using System;
 using System.Collections.Generic;
 
@@ -27,9 +27,14 @@ namespace Ergosum.ClassesMetier
         /// <returns></returns>
         public int QuantitéDistribuée()
         {
-            // TODO : implémenter cette méthode
-            // TODO : changer le return
-            return 0;
+            Collection<Jouet> lesCles = this.lesJouets.DonnerToutesLesCles();
+            int nb = 0;
+
+            foreach(Jouet jouet in lesCles)
+            {
+                nb += this.lesJouets.DonnerValeur(jouet);
+            }
+            return nb;
         }
 
  
@@ -42,9 +47,25 @@ namespace Ergosum.ClassesMetier
         /// </summary>
         /// <returns></returns>
         public Dictionnaire<Categorie, int> StatCateg() {
-            // TODO : implémenter cette méthode
-            // TODO : changer le return
-            return null;
+            Collection<Jouet> lesCles = this.lesJouets.DonnerToutesLesCles();
+            Dictionnaire<Categorie, int> unDico = new Dictionnaire<Categorie, int>();
+
+            foreach(Jouet jouet in lesCles)
+            {
+                if (unDico.Existe(jouet.Categ))
+                {
+                    unDico.Modifier(jouet.Categ,
+                        this.lesJouets.DonnerValeur(jouet) +
+                        unDico.DonnerValeur(jouet.Categ));
+                }
+                else
+                {
+                    unDico.Ajouter(
+                        jouet.Categ,
+                        this.lesJouets.DonnerValeur(jouet));
+                }
+            }
+            return unDico;
         }
 
         /// <summary>

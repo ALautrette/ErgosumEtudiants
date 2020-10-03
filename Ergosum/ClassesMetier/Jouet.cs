@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +22,11 @@ namespace Ergosum.ClassesMetier
         /// <param name="uneTranche"></param>
         public Jouet(int unNumero, string unLibelle, Categorie uneCategorie, TrancheAge uneTranche)
         {
-            // TODO
+            this.numero = unNumero;
+            this.libelle = unLibelle;
+            this.categ = uneCategorie;
+            this.tranche = uneTranche;
+            this.categ.AjouterJouet(this);
         }
 
         public int Numero { get => numero;  }
@@ -37,9 +41,8 @@ namespace Ergosum.ClassesMetier
         /// <param name=""></param>
         /// <returns></returns>
         public bool Convient(int unAge) {
-            // TODO
-            // return à changer
-            return true;
+            return unAge <= this.tranche.AgeMax
+                && unAge >= this.tranche.AgeMin;
         }
 
         /// <summary>
@@ -50,8 +53,10 @@ namespace Ergosum.ClassesMetier
         /// <returns></returns>
         public string GetInfos()
         {
-            // TODO
-            return "";
+            return this.libelle + ";" +
+                this.categ.Libelle + ";" +
+                this.tranche.AgeMin.ToString() + ";" +
+                this.tranche.AgeMax.ToString();
         }        
 
     }

@@ -1,4 +1,4 @@
-﻿using Ergosum.ClassesMetier;
+using Ergosum.ClassesMetier;
 using Ergosum.ClassesTechniques;
 using System;
 
@@ -77,8 +77,8 @@ namespace Ergosum
 
             //////////////////
             // Jouets d'une categorie compatibles avec un âge passé en paramètre
-            int age = 6;
-            //int age = 10;
+            //int age = 6;
+            int age = 10;
             Collection<Jouet> lesJouets =categorie1.JouetTranche(age);
             if(lesJouets.Cardinal() > 0)
             {
